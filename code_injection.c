@@ -6,7 +6,9 @@
 #include <fcntl.h>
 #include <string.h>
 #include <unistd.h>
-// nasm -o code_to_inject.o -felf64 code_to_inject.asm
+
+// https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
+
 int main(int ac, char **av) {
 	if (ac != 2){
 		puts("invalid number of arguments");
@@ -24,7 +26,7 @@ int main(int ac, char **av) {
 		puts(strerror(errno));
 		return -1;
 	}
-	printf("%s file size: %lld\n", av[1], file_stats.st_size);
+	printf("%s file size: %ld\n", av[1], file_stats.st_size);
 
 	void *ptr_to_injected_code = mmap(NULL, file_stats.st_size, PROT_EXEC, MAP_PRIVATE, fd, 0);
 

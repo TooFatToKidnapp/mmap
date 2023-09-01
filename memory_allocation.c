@@ -4,6 +4,7 @@
 #include <strings.h>
 #include <errno.h>
 #include <assert.h>
+#include <string.h>
 
 #define SIZE 10
 
@@ -32,9 +33,9 @@ int main (void) {
 			printf("%d\n", ptr[i]);
 		}
 
-	if (0 > munmap(ptr, SIZE * sizeof(int))) {
-		puts(strerror(errno));
-		return -1;
-	}
+	// if (0 > munmap(ptr, SIZE * sizeof(int))) {
+	// 	puts(strerror(errno));
+	// 	return -1;
+	// }
 	return 0;
 }

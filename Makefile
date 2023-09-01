@@ -1,12 +1,12 @@
-alloc: memory_allocation.c
-	cc -Wall -Wextra -o memory_allocation memory_allocation.c
+FILES = code_injection code_to_inject  file_manipulation  inter_process_communication memory_allocation
 
-read: file_manipulation.c
-	cc -Wall -Wextra -o file_manipulation file_manipulation.c
+all: $(FILES)
 
-ipc: inter_process_communication.c
-	cc -Wall -Wextra -o IPC inter_process_communication.c
+code_to_inject:
+	nasm -o code_to_inject code_to_inject.asm
 
-exec: code_injection.c
-	cc -Wall -Wextra -fsanitize=address -g -o code_injection code_injection.c
+%: %.c
+	gcc -Wall -Wextra -Werror -ggdb -o $@ $<
 
+clean:
+	rm -frv $(FILES)
