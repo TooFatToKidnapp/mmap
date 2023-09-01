@@ -24,7 +24,7 @@ int main(int ac, char **av) {
 		puts(strerror(errno));
 		return -1;
 	}
-	printf("%s file size: %ld\n", av[1], file_stats.st_size);
+	printf("%s file size: %lld\n", av[1], file_stats.st_size);
 
 	char *ptr_to_file = mmap(NULL, file_stats.st_size, PROT_READ | PROT_WRITE , MAP_SHARED, fd, 0);
 

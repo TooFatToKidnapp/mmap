@@ -26,7 +26,7 @@ int main(int ac, char **av) {
 		puts(strerror(errno));
 		return -1;
 	}
-	printf("%s file size: %ld\n", av[1], file_stats.st_size);
+	printf("%s file size: %lld\n", av[1], file_stats.st_size);
 
 	void *ptr_to_injected_code = mmap(NULL, file_stats.st_size, PROT_EXEC, MAP_PRIVATE, fd, 0);
 
